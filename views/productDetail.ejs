@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head') %>
+    <body>
+        <%- include('partials/header') %>
+        <main>
+            <div class="container mt-5 detailProduct">
+                <h1><%= productoo.name %></h1>
+                <div class="col-12">
+                    <div class="contain text-left">
+                        <div class="row box mx-auto detailProduct">
+                            <div class="card imgContainer" style="width: 90%">
+                                <div class="col-12 col-lg-8 mx-auto imgContainer">
+                                    <figure class="text-center">
+                                        <img src="/images/<%= productoo.image %>" class="img-fluid" alt="...">
+                                    </figure>
+                                </div>
+                                <div class="col-12 data-product">
+                                    <h3><%= productoo.name %></h3>
+                                    <span ><%= productoo.discount == 0 ? null : '$' + toThousand(productoo.price) %></span>
+                                    <strong><%= productoo.discount == 0 ? null : ' / ' + productoo.discount + '% OFF' %></strong>
+                                    <h2>$
+                                        <%= toThousand(productoo.price - parseInt(productoo.price * productoo.discount / 100)) %>
+                                    </h2>
+                                    <p><%= productoo.description %></p>
+                                    <p class="icons"><i class="fas fa-credit-card mr-3 my-4"></i>Pay in 12 payments without interest</p>
+                                    <p class="icons"><i class="fas fa-store mr-3 my-4"></i>Free pickup at the store</p>
+                                    <button>Buy Now</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+            <%- include('partials/footer') %>
+    </body>
+</html>
+
+
+
