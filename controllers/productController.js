@@ -4,31 +4,23 @@ let productsJSON = products.getProducts();
 
 module.exports = {
     productIndex : (req, res) => {
+        let product = productsJSON.find(product => {
+            return product.id === Number(req.params.id) && product.category === req.params.category
+        })
         res.render('product', {
             title : 'Product List',
-            productsJSON
+            productsJSON,
+            product
         })
     },
-    detailList: (req,res)=>{
-
-        const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g,".");
-        let productss = [];
-
-        let productoo = productsJSON.find(product => {
-            return product.id === Number(req.params.id)
+    detail : (req, res) => {
+        let item = productsJSON.find(product => {
+            return product.id === Number(req.params.id) && product.category === req.params.category
         })
 
-        productsJSON.forEach(product=>{
-            if(productoo){
-                return productss.push(product);
-            }
+        res.render('productDetail', {
+            title : item.name,
+            item
         })
-
-        res.render('productDetail',{
-            productss,
-            toThousand,
-            title : productoo.name,
-            productoo
-        });
     }
 }

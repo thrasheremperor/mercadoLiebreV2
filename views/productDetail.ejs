@@ -5,24 +5,24 @@
         <%- include('partials/header') %>
         <main>
             <div class="container mt-5 detailProduct">
-                <h1><%= productoo.name %></h1>
+                <h1><%= item.name %></h1>
                 <div class="col-12">
                     <div class="contain text-left">
                         <div class="row box mx-auto detailProduct">
                             <div class="card imgContainer" style="width: 90%">
                                 <div class="col-12 col-lg-8 mx-auto imgContainer">
                                     <figure class="text-center">
-                                        <img src="/images/<%= productoo.image %>" class="img-fluid" alt="...">
+                                        <img src="/images/<%= item.image %>" class="img-fluid" alt="...">
                                     </figure>
                                 </div>
                                 <div class="col-12 data-product">
-                                    <h3><%= productoo.name %></h3>
-                                    <span ><%= productoo.discount == 0 ? null : '$' + toThousand(productoo.price) %></span>
-                                    <strong><%= productoo.discount == 0 ? null : ' / ' + productoo.discount + '% OFF' %></strong>
-                                    <h2>$
-                                        <%= toThousand(productoo.price - parseInt(productoo.price * productoo.discount / 100)) %>
-                                    </h2>
-                                    <p><%= productoo.description %></p>
+                                    <h3><%= item.name %></h3>
+                                    <span>$<%= (item.price).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g,".") %></span>
+                                    <% if (item.discount != 0) { %>
+                                        <strong><%= item.discount %>% OFF </strong>
+                                    <% } %>
+                                    <h2>$<%= (item.price - item.price * item.discount / 100).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g,".") %></h2>
+                                    <p><%= item.description %></p>
                                     <p class="icons"><i class="fas fa-credit-card mr-3 my-4"></i>Pay in 12 payments without interest</p>
                                     <p class="icons"><i class="fas fa-store mr-3 my-4"></i>Free pickup at the store</p>
                                     <button>Buy Now</button>
